@@ -1,8 +1,8 @@
 package kodllama.io.ecommerce.business.concretes;
 
 import kodllama.io.ecommerce.business.abstracts.ProductService;
-import kodllama.io.ecommerce.entities.concretes.Product;
-import kodllama.io.ecommerce.repository.abstracts.ProductRepository;
+import kodllama.io.ecommerce.entities.Product;
+import kodllama.io.ecommerce.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,30 +18,37 @@ public class ProductManager implements ProductService {
 
     @Override
     public List<Product> getAll() {
-        return repository.getAll();
+        return repository.findAll();
     }
 
     @Override
     public Product getById(int id) {
-        return repository.getById(id);
+        checkIfProductExist(id);
+
+        return repository.findById(id).orElseThrow();
+    }
+
+    private void checkIfProductExist(int id) {
+        if (!repository.existsById(id)) throw new RuntimeException("ürün bulunamadı");
+
     }
 
     @Override
     public Product add(Product product) throws IllegalAccessException {
         validateProduct(product);
-            return repository.add(product);
+            return repository.save(product);
     }
 
     @Override
     public Product update(int id, Product product) throws IllegalAccessException {
         validateProduct(product);
-
-        return repository.update(id,product);
+        product.setId(id);
+        return repository.save(product);
     }
 
     @Override
     public Product delete(int id) {
-    repository.delete(id);
+    repository.deleteById(id);
         return null;
     }
     private void checkIfPriceValid(Product product) throws IllegalAccessException {

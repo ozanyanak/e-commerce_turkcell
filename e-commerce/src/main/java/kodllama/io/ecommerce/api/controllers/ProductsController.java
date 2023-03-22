@@ -1,7 +1,7 @@
 package kodllama.io.ecommerce.api.controllers;
 
 import kodllama.io.ecommerce.business.abstracts.ProductService;
-import kodllama.io.ecommerce.entities.concretes.Product;
+import kodllama.io.ecommerce.entities.Product;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
