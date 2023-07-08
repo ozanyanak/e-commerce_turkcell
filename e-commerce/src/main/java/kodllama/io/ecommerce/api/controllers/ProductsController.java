@@ -20,7 +20,6 @@ import java.util.List;
 
 @RequestMapping("/api/products")
 public class ProductsController {
-
     private final ProductService service;
 
     @GetMapping
