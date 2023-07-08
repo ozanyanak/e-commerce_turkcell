@@ -11,12 +11,12 @@ public class ProductBusinessRules {
 private final ProductRepository repository;
 
     public void checkIfProductExist(int id) {
-        if (!repository.existsById(id)) throw new RuntimeException("ürün zaten var");
+        if (!repository.existsById(id)) throw new RuntimeException("ürün yok");
     }
 
     public void checkIfBrandExistsByName(String name) {
         if (repository.existsByNameIgnoreCase(name)) {
-            throw new RuntimeException("ürün zaten var");
+            throw new RuntimeException("ürün yok");
         }
     }
 
