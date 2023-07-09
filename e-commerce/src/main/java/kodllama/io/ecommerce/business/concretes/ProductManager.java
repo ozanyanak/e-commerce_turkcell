@@ -48,6 +48,7 @@ public class ProductManager implements ProductService {
         rules.checkIfProductExistsByName(request.getName());
         Product product = mapper.map(request, Product.class);
         product.setId(0);
+
         repository.save(product);
         CreateProductResponse response = mapper.map(product, CreateProductResponse.class);
 

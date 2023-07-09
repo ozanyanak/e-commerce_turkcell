@@ -22,6 +22,8 @@ public class Category {
     private String name;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "productCategories")
+    @OneToMany(mappedBy = "category")
     private List<Product> products;
+
+
 }
