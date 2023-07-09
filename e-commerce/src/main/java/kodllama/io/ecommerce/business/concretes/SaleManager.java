@@ -1,12 +1,16 @@
 package kodllama.io.ecommerce.business.concretes;
 
+import kodllama.io.ecommerce.business.abstracts.PaymentService;
+import kodllama.io.ecommerce.business.abstracts.ProductService;
 import kodllama.io.ecommerce.business.abstracts.SaleService;
+import kodllama.io.ecommerce.business.dto.request.create.CreatePaymentRequest;
 import kodllama.io.ecommerce.business.dto.request.create.CreateSaleRequest;
 import kodllama.io.ecommerce.business.dto.request.update.UpdateSaleRequest;
 import kodllama.io.ecommerce.business.dto.response.create.CreateSaleResponse;
 import kodllama.io.ecommerce.business.dto.response.get.GetAllSalesResponse;
 import kodllama.io.ecommerce.business.dto.response.get.GetSaleResponse;
 import kodllama.io.ecommerce.business.dto.response.update.UpdateSaleResponse;
+import kodllama.io.ecommerce.common.dto.CreateSalePaymentRequest;
 import kodllama.io.ecommerce.entities.Sale;
 import kodllama.io.ecommerce.repository.SaleRepository;
 import lombok.AllArgsConstructor;
@@ -23,7 +27,8 @@ public class SaleManager implements SaleService {
 
     private ModelMapper mapper;
     private SaleRepository repository;
-
+    private PaymentService paymentService;
+    private ProductService productService;
     @Override
     public List<GetAllSalesResponse> getAll() {
         var sales= repository.findAll();
@@ -47,9 +52,18 @@ public class SaleManager implements SaleService {
         sale.setId(0);
         sale.setTotalPrice(sale.getUnitPrice()*sale.getNumberOfPurchases());
         sale.setDateOfPurchase(LocalDateTime.now());
-        repository.save(sale);
+
+
+        CreateSalePaymentRequest paymentRequest=new CreateSalePaymentRequest();
+        mapper.map(request.getPaymentRequest(), paymentRequest);
+        paymentRequest.setPrice(sale.getTotalPrice());
+        paymentService.processSalePayment(paymentRequest);
+
+        productService.changeQuantity(request.getProductId(),request.getNumberOfPurchases());
         CreateSaleResponse response = mapper.map(sale, CreateSaleResponse.class);
 
+
+        repository.save(sale);
         return response;
     }
 

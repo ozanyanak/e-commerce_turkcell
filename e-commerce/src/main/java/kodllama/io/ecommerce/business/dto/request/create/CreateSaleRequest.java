@@ -1,5 +1,6 @@
 package kodllama.io.ecommerce.business.dto.request.create;
 
+import kodllama.io.ecommerce.business.dto.request.PaymentRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,5 +15,8 @@ public class CreateSaleRequest {
 
     private int numberOfPurchases;
     private double unitPrice;
-    private double totalPrice;
+
+    private PaymentRequest paymentRequest;
+
+
 }

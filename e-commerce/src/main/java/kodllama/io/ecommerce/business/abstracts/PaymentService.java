@@ -24,6 +24,6 @@ public interface PaymentService {
     void delete(int id);
 
     //todo process kısmı yazılacak
-    void processPayment(CreateSalePaymentRequest request);
 
+    void processSalePayment(CreateSalePaymentRequest paymentRequest);
 }

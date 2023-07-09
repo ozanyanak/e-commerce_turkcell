@@ -67,7 +67,7 @@ public class PaymentManager implements PaymentService {
     }
 
     @Override
-    public void processPayment(CreateSalePaymentRequest request) {
+    public void processSalePayment(CreateSalePaymentRequest request) {
         Payment payment = repository.findByCardNumber(request.getCardNumber());
         posService.pay(); // fake pos service
         payment.setBalance(payment.getBalance() - request.getPrice());

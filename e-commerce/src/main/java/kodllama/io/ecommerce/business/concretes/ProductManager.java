@@ -70,4 +70,10 @@ public class ProductManager implements ProductService {
         rules.checkIfProductExist(id);
         repository.deleteById(id);
     }
+
+    @Override
+    public void changeQuantity(int id,int number) {
+        Product product = repository.findById(id).orElseThrow();
+        product.setQuantify(product.getQuantify()-number);
+    }
 }
