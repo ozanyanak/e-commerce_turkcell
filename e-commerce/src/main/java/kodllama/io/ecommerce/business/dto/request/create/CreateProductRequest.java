@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class CreateProductRequest {
     private int categoryId;
-
+    private String categoryName;
     private  String name;
     private  int quantify;
     private boolean status;

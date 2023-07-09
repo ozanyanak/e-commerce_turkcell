@@ -12,6 +12,7 @@ import lombok.Setter;
 public class GetAllProductsResponse {
     private int id;
     private int categoryId;
+    private String categoryName;
 
     private  String name;
     private  int quantify;

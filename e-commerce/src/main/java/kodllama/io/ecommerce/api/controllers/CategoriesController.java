@@ -1,19 +1,12 @@
 package kodllama.io.ecommerce.api.controllers;
 
 import kodllama.io.ecommerce.business.abstracts.CategoryService;
-import kodllama.io.ecommerce.business.abstracts.ProductService;
 import kodllama.io.ecommerce.business.dto.request.create.CreateCategoryRequest;
-import kodllama.io.ecommerce.business.dto.request.create.CreateProductRequest;
 import kodllama.io.ecommerce.business.dto.request.update.UpdateCategoryRequest;
-import kodllama.io.ecommerce.business.dto.request.update.UpdateProductRequest;
 import kodllama.io.ecommerce.business.dto.response.create.CreateCategoryResponse;
-import kodllama.io.ecommerce.business.dto.response.create.CreateProductResponse;
 import kodllama.io.ecommerce.business.dto.response.get.GetAllCategoriesResponse;
-import kodllama.io.ecommerce.business.dto.response.get.GetAllProductsResponse;
 import kodllama.io.ecommerce.business.dto.response.get.GetCategoryResponse;
-import kodllama.io.ecommerce.business.dto.response.get.GetProductResponse;
 import kodllama.io.ecommerce.business.dto.response.update.UpdateCategoryResponse;
-import kodllama.io.ecommerce.business.dto.response.update.UpdateProductResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

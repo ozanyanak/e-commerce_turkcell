@@ -1,13 +1,16 @@
 package kodllama.io.ecommerce.business.concretes;
 
+import kodllama.io.ecommerce.business.abstracts.InvoiceService;
 import kodllama.io.ecommerce.business.abstracts.PaymentService;
 import kodllama.io.ecommerce.business.abstracts.ProductService;
 import kodllama.io.ecommerce.business.abstracts.SaleService;
+import kodllama.io.ecommerce.business.dto.request.create.CreateInvoiceRequest;
 import kodllama.io.ecommerce.business.dto.request.create.CreatePaymentRequest;
 import kodllama.io.ecommerce.business.dto.request.create.CreateSaleRequest;
 import kodllama.io.ecommerce.business.dto.request.update.UpdateSaleRequest;
 import kodllama.io.ecommerce.business.dto.response.create.CreateSaleResponse;
 import kodllama.io.ecommerce.business.dto.response.get.GetAllSalesResponse;
+import kodllama.io.ecommerce.business.dto.response.get.GetProductResponse;
 import kodllama.io.ecommerce.business.dto.response.get.GetSaleResponse;
 import kodllama.io.ecommerce.business.dto.response.update.UpdateSaleResponse;
 import kodllama.io.ecommerce.common.dto.CreateSalePaymentRequest;
@@ -29,6 +32,7 @@ public class SaleManager implements SaleService {
     private SaleRepository repository;
     private PaymentService paymentService;
     private ProductService productService;
+    private InvoiceService invoiceService;
     @Override
     public List<GetAllSalesResponse> getAll() {
         var sales= repository.findAll();
@@ -64,6 +68,10 @@ public class SaleManager implements SaleService {
 
 
         repository.save(sale);
+        CreateInvoiceRequest invoiceRequest = new CreateInvoiceRequest();
+
+        createInvoice(request, invoiceRequest, sale);
+        invoiceService.add(invoiceRequest);
         return response;
     }
 
@@ -82,5 +90,15 @@ public class SaleManager implements SaleService {
     @Override
     public void delete(int id) {
         repository.deleteById(id);
+    }
+    public void createInvoice(CreateSaleRequest request, CreateInvoiceRequest invoiceRequest, Sale sale){
+
+        GetProductResponse product=productService.getById(request.getProductId());
+
+        invoiceRequest.setProductName(product.getName());
+        invoiceRequest.setNumberOfPurchases(request.getNumberOfPurchases());
+        invoiceRequest.setTotalPrice(sale.getTotalPrice());
+
+
     }
 }

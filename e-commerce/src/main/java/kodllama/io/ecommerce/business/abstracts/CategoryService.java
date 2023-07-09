@@ -1,17 +1,11 @@
 package kodllama.io.ecommerce.business.abstracts;
 
 import kodllama.io.ecommerce.business.dto.request.create.CreateCategoryRequest;
-import kodllama.io.ecommerce.business.dto.request.create.CreateSaleRequest;
 import kodllama.io.ecommerce.business.dto.request.update.UpdateCategoryRequest;
-import kodllama.io.ecommerce.business.dto.request.update.UpdateSaleRequest;
 import kodllama.io.ecommerce.business.dto.response.create.CreateCategoryResponse;
-import kodllama.io.ecommerce.business.dto.response.create.CreateSaleResponse;
 import kodllama.io.ecommerce.business.dto.response.get.GetAllCategoriesResponse;
-import kodllama.io.ecommerce.business.dto.response.get.GetAllSalesResponse;
 import kodllama.io.ecommerce.business.dto.response.get.GetCategoryResponse;
-import kodllama.io.ecommerce.business.dto.response.get.GetSaleResponse;
 import kodllama.io.ecommerce.business.dto.response.update.UpdateCategoryResponse;
-import kodllama.io.ecommerce.business.dto.response.update.UpdateSaleResponse;
 
 import java.util.List;
 
