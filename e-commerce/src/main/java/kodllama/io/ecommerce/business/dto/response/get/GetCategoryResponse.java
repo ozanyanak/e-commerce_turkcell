@@ -9,16 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class GetAllProductsResponse {
+public class GetCategoryResponse {
     private int id;
-    private int categoryId;
-
-    private  String name;
-    private  int quantify;
-    private boolean status;
-
-    private double price;
-
-    private String description;
+    private String name;
 }
-

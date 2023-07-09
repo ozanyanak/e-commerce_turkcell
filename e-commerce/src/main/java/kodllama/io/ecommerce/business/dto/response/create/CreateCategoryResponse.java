@@ -5,22 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-
-public class CreateProductResponse {
+public class CreateCategoryResponse {
     private int id;
-    private int categoryId;
-
-    private  String name;
-    private  int quantify;
-    private boolean status;
-
-    private double price;
-
-    private String description;
+    private String name;
 }
