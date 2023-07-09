@@ -45,7 +45,7 @@ public class ProductManager implements ProductService {
     @Override
     public CreateProductResponse add(CreateProductRequest request) {
 
-        rules.checkIfBrandExistsByName(request.getName());
+        rules.checkIfProductExistsByName(request.getName());
         Product product = mapper.map(request, Product.class);
         product.setId(0);
         repository.save(product);

@@ -18,9 +18,7 @@ public class Sale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private int productId;
-
     private int numberOfPurchases;
     private double unitPrice;
     private double totalPrice;
